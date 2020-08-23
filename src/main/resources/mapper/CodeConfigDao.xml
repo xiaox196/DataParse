@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.data.dao.CodeConfigDao">
+	<resultMap id="BaseResultMap" type="com.ming.data.entity.CodeConfig">
+	</resultMap>
+
+
+	<select id="find" resultType="com.ming.data.entity.CodeConfig">
+		select *
+		from CodeConfig
+		where active=#{active}
+	</select>
+
+	<insert id="save" parameterType="com.ming.data.entity.CodeConfig">
+		insert into
+		CodeConfig(code,`name`,intervalTime,active,enable)
+		values(#{code}, #{name}, #{intervalTime}, #{active},#{enable})
+	</insert>
+
+
+	<select id="findEnable" resultType="com.ming.data.entity.CodeConfig">
+		select *
+		from CodeConfig
+		where enable=#{enable} order by position desc
+	</select>
+
+
+</mapper>
+    

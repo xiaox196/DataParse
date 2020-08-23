@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.data.dao.TrendDao">
+	<!--<resultMap id="BaseResultMap" type="com.ming.data.entity.Number">-->
+		<!--<result column="year" property="year" jdbcType="VARCHAR" />-->
+		<!--<result column="periods" property="periods" jdbcType="VARCHAR" />-->
+		<!--<result column="number" property="number" jdbcType="INTEGER" />-->
+	<!--</resultMap>-->
+	<select id="findByYearAndPeriods" resultType="com.ming.data.entity.Trend">
+		select *
+		from trend
+		where `year`=#{year} and periods=#{periods}
+	</select>
+
+	<!-- 对应numberDao中的save方法，  -->
+	<insert id="save" parameterType="com.ming.data.entity.Trend">
+		insert into
+		trend(sizeTrend,singleTrend,zodiacSignsTrend,colorWaveTrend,numberTrend,zfTrend,ncTrend,`year`,periods)
+		values(#{sizeTrend}, #{singleTrend}, #{zodiacSignsTrend}, #{colorWaveTrend},
+		 #{numberTrend}, #{zfTrend},#{ncTrend},#{year},#{periods})
+	</insert>
+
+	<select id="findAllByYear" resultType="com.ming.data.entity.Trend">
+		select *
+		from trend
+		where `year`=#{year}
+		order by id desc
+	</select>
+
+</mapper>
+    

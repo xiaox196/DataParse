@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.data.dao.TestHomeDao">
+	<resultMap id="BaseResultMap" type="com.ming.data.entity.TestHome">
+	</resultMap>
+
+
+	<select id="findAll" resultType="com.ming.data.entity.TestHome">
+		select title,text,url
+		from testhome limit 10
+	</select>
+
+	<insert id="save" parameterType="com.ming.data.entity.TestHome">
+		insert into
+		testhome(title,`text`,url)
+		values(#{title}, #{text}, #{url})
+	</insert>
+
+
+	<select id="findByUrl" resultType="com.ming.data.entity.TestHome">
+		select *
+		from testhome
+		where url=#{url}
+	</select>
+</mapper>
+    

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.data.dao.ParseDetailDao">
+  <resultMap id="BaseResultMap" type="com.ming.data.entity.ParseDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="am_buy" jdbcType="INTEGER" property="amBuy" />
+    <result column="am_sell" jdbcType="INTEGER" property="amSell" />
+    <result column="asp_buy" jdbcType="INTEGER" property="aspBuy" />
+    <result column="asp_sell" jdbcType="INTEGER" property="aspSell" />
+    <result column="pm_buy" jdbcType="INTEGER" property="pmBuy" />
+    <result column="pm_sell" jdbcType="INTEGER" property="pmSell" />
+    <result column="sp_buy" jdbcType="INTEGER" property="spBuy" />
+    <result column="sp_sell" jdbcType="INTEGER" property="spSell" />
+    <result column="total_buy" jdbcType="INTEGER" property="totalBuy" />
+    <result column="total_sell" jdbcType="INTEGER" property="totalSell" />
+    <result column="range" jdbcType="VARCHAR" property="range" />
+    <result column="sellBigCount" jdbcType="INTEGER" property="sellbigcount" />
+    <result column="buyBigCount" jdbcType="INTEGER" property="buybigcount" />
+    <result column="later5_buy" jdbcType="INTEGER" property="later5Buy" />
+    <result column="later5_sell" jdbcType="INTEGER" property="later5Sell" />
+    <result column="later10_buy" jdbcType="INTEGER" property="later10Buy" />
+    <result column="later10_sell" jdbcType="INTEGER" property="later10Sell" />
+    <result column="later5_ave" jdbcType="FLOAT" property="later5Ave" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, `time`, am_buy, am_sell, asp_buy, asp_sell, pm_buy, pm_sell, sp_buy, 
+    sp_sell, total_buy, total_sell, `range`, sellBigCount, buyBigCount, later5_buy, later5_sell, 
+    later10_buy, later10_sell, later5_ave
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from parse_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="findAllByName" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from parse_detail
+    where name = #{name}
+  </select>
+
+  <select id="selectByNameAndTime" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from parse_detail
+    where name = #{name} and time=#{time}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from parse_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.data.entity.ParseDetail" useGeneratedKeys="true">
+    insert into parse_detail (`name`, `time`, am_buy, 
+      am_sell, asp_buy, asp_sell, 
+      pm_buy, pm_sell, sp_buy, 
+      sp_sell, total_buy, total_sell, 
+      `range`, sellBigCount, buyBigCount, 
+      later5_buy, later5_sell, later10_buy, 
+      later10_sell, later5_ave)
+    values (#{name,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{amBuy,jdbcType=INTEGER}, 
+      #{amSell,jdbcType=INTEGER}, #{aspBuy,jdbcType=INTEGER}, #{aspSell,jdbcType=INTEGER}, 
+      #{pmBuy,jdbcType=INTEGER}, #{pmSell,jdbcType=INTEGER}, #{spBuy,jdbcType=INTEGER}, 
+      #{spSell,jdbcType=INTEGER}, #{totalBuy,jdbcType=INTEGER}, #{totalSell,jdbcType=INTEGER}, 
+      #{range,jdbcType=VARCHAR}, #{sellbigcount,jdbcType=INTEGER}, #{buybigcount,jdbcType=INTEGER}, 
+      #{later5Buy,jdbcType=INTEGER}, #{later5Sell,jdbcType=INTEGER}, #{later10Buy,jdbcType=INTEGER}, 
+      #{later10Sell,jdbcType=INTEGER}, #{later5Ave,jdbcType=FLOAT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.data.entity.ParseDetail" useGeneratedKeys="true">
+    insert into parse_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="time != null">
+        `time`,
+      </if>
+      <if test="amBuy != null">
+        am_buy,
+      </if>
+      <if test="amSell != null">
+        am_sell,
+      </if>
+      <if test="aspBuy != null">
+        asp_buy,
+      </if>
+      <if test="aspSell != null">
+        asp_sell,
+      </if>
+      <if test="pmBuy != null">
+        pm_buy,
+      </if>
+      <if test="pmSell != null">
+        pm_sell,
+      </if>
+      <if test="spBuy != null">
+        sp_buy,
+      </if>
+      <if test="spSell != null">
+        sp_sell,
+      </if>
+      <if test="totalBuy != null">
+        total_buy,
+      </if>
+      <if test="totalSell != null">
+        total_sell,
+      </if>
+      <if test="range != null">
+        `range`,
+      </if>
+      <if test="sellbigcount != null">
+        sellBigCount,
+      </if>
+      <if test="buybigcount != null">
+        buyBigCount,
+      </if>
+      <if test="later5Buy != null">
+        later5_buy,
+      </if>
+      <if test="later5Sell != null">
+        later5_sell,
+      </if>
+      <if test="later10Buy != null">
+        later10_buy,
+      </if>
+      <if test="later10Sell != null">
+        later10_sell,
+      </if>
+      <if test="later5Ave != null">
+        later5_ave,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="amBuy != null">
+        #{amBuy,jdbcType=INTEGER},
+      </if>
+      <if test="amSell != null">
+        #{amSell,jdbcType=INTEGER},
+      </if>
+      <if test="aspBuy != null">
+        #{aspBuy,jdbcType=INTEGER},
+      </if>
+      <if test="aspSell != null">
+        #{aspSell,jdbcType=INTEGER},
+      </if>
+      <if test="pmBuy != null">
+        #{pmBuy,jdbcType=INTEGER},
+      </if>
+      <if test="pmSell != null">
+        #{pmSell,jdbcType=INTEGER},
+      </if>
+      <if test="spBuy != null">
+        #{spBuy,jdbcType=INTEGER},
+      </if>
+      <if test="spSell != null">
+        #{spSell,jdbcType=INTEGER},
+      </if>
+      <if test="totalBuy != null">
+        #{totalBuy,jdbcType=INTEGER},
+      </if>
+      <if test="totalSell != null">
+        #{totalSell,jdbcType=INTEGER},
+      </if>
+      <if test="range != null">
+        #{range,jdbcType=VARCHAR},
+      </if>
+      <if test="sellbigcount != null">
+        #{sellbigcount,jdbcType=INTEGER},
+      </if>
+      <if test="buybigcount != null">
+        #{buybigcount,jdbcType=INTEGER},
+      </if>
+      <if test="later5Buy != null">
+        #{later5Buy,jdbcType=INTEGER},
+      </if>
+      <if test="later5Sell != null">
+        #{later5Sell,jdbcType=INTEGER},
+      </if>
+      <if test="later10Buy != null">
+        #{later10Buy,jdbcType=INTEGER},
+      </if>
+      <if test="later10Sell != null">
+        #{later10Sell,jdbcType=INTEGER},
+      </if>
+      <if test="later5Ave != null">
+        #{later5Ave,jdbcType=FLOAT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ming.data.entity.ParseDetail">
+    update parse_detail
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        `time` = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="amBuy != null">
+        am_buy = #{amBuy,jdbcType=INTEGER},
+      </if>
+      <if test="amSell != null">
+        am_sell = #{amSell,jdbcType=INTEGER},
+      </if>
+      <if test="aspBuy != null">
+        asp_buy = #{aspBuy,jdbcType=INTEGER},
+      </if>
+      <if test="aspSell != null">
+        asp_sell = #{aspSell,jdbcType=INTEGER},
+      </if>
+      <if test="pmBuy != null">
+        pm_buy = #{pmBuy,jdbcType=INTEGER},
+      </if>
+      <if test="pmSell != null">
+        pm_sell = #{pmSell,jdbcType=INTEGER},
+      </if>
+      <if test="spBuy != null">
+        sp_buy = #{spBuy,jdbcType=INTEGER},
+      </if>
+      <if test="spSell != null">
+        sp_sell = #{spSell,jdbcType=INTEGER},
+      </if>
+      <if test="totalBuy != null">
+        total_buy = #{totalBuy,jdbcType=INTEGER},
+      </if>
+      <if test="totalSell != null">
+        total_sell = #{totalSell,jdbcType=INTEGER},
+      </if>
+      <if test="range != null">
+        `range` = #{range,jdbcType=VARCHAR},
+      </if>
+      <if test="sellbigcount != null">
+        sellBigCount = #{sellbigcount,jdbcType=INTEGER},
+      </if>
+      <if test="buybigcount != null">
+        buyBigCount = #{buybigcount,jdbcType=INTEGER},
+      </if>
+      <if test="later5Buy != null">
+        later5_buy = #{later5Buy,jdbcType=INTEGER},
+      </if>
+      <if test="later5Sell != null">
+        later5_sell = #{later5Sell,jdbcType=INTEGER},
+      </if>
+      <if test="later10Buy != null">
+        later10_buy = #{later10Buy,jdbcType=INTEGER},
+      </if>
+      <if test="later10Sell != null">
+        later10_sell = #{later10Sell,jdbcType=INTEGER},
+      </if>
+      <if test="later5Ave != null">
+        later5_ave = #{later5Ave,jdbcType=FLOAT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ming.data.entity.ParseDetail">
+    update parse_detail
+    set `name` = #{name,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=VARCHAR},
+      am_buy = #{amBuy,jdbcType=INTEGER},
+      am_sell = #{amSell,jdbcType=INTEGER},
+      asp_buy = #{aspBuy,jdbcType=INTEGER},
+      asp_sell = #{aspSell,jdbcType=INTEGER},
+      pm_buy = #{pmBuy,jdbcType=INTEGER},
+      pm_sell = #{pmSell,jdbcType=INTEGER},
+      sp_buy = #{spBuy,jdbcType=INTEGER},
+      sp_sell = #{spSell,jdbcType=INTEGER},
+      total_buy = #{totalBuy,jdbcType=INTEGER},
+      total_sell = #{totalSell,jdbcType=INTEGER},
+      `range` = #{range,jdbcType=VARCHAR},
+      sellBigCount = #{sellbigcount,jdbcType=INTEGER},
+      buyBigCount = #{buybigcount,jdbcType=INTEGER},
+      later5_buy = #{later5Buy,jdbcType=INTEGER},
+      later5_sell = #{later5Sell,jdbcType=INTEGER},
+      later10_buy = #{later10Buy,jdbcType=INTEGER},
+      later10_sell = #{later10Sell,jdbcType=INTEGER},
+      later5_ave = #{later5Ave,jdbcType=FLOAT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

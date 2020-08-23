@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.data.dao.SinashareDao">
+    <resultMap id="BaseResultMap" type="com.ming.data.entity.Sinashare">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="yesterdayPrice" jdbcType="DOUBLE" property="yesterdayprice"/>
+        <result column="currentPrice" jdbcType="DOUBLE" property="currentprice"/>
+        <result column="todayPrice" jdbcType="DOUBLE" property="todayprice"/>
+        <result column="range" jdbcType="VARCHAR" property="range"/>
+        <result column="buy1" jdbcType="INTEGER" property="buy1"/>
+        <result column="buy1price" jdbcType="DOUBLE" property="buy1price"/>
+        <result column="buy2" jdbcType="INTEGER" property="buy2"/>
+        <result column="buy2price" jdbcType="DOUBLE" property="buy2price"/>
+        <result column="buy3" jdbcType="INTEGER" property="buy3"/>
+        <result column="buy3price" jdbcType="DOUBLE" property="buy3price"/>
+        <result column="buy4" jdbcType="INTEGER" property="buy4"/>
+        <result column="buy4price" jdbcType="DOUBLE" property="buy4price"/>
+        <result column="buy5" jdbcType="INTEGER" property="buy5"/>
+        <result column="buy5price" jdbcType="DOUBLE" property="buy5price"/>
+        <result column="sell1" jdbcType="INTEGER" property="sell1"/>
+        <result column="sell1price" jdbcType="DOUBLE" property="sell1price"/>
+        <result column="sell2" jdbcType="INTEGER" property="sell2"/>
+        <result column="sell2price" jdbcType="DOUBLE" property="sell2price"/>
+        <result column="sell3" jdbcType="INTEGER" property="sell3"/>
+        <result column="sell3price" jdbcType="DOUBLE" property="sell3price"/>
+        <result column="sell4" jdbcType="INTEGER" property="sell4"/>
+        <result column="sell4price" jdbcType="DOUBLE" property="sell4price"/>
+        <result column="sell5" jdbcType="INTEGER" property="sell5"/>
+        <result column="sell5price" jdbcType="DOUBLE" property="sell5price"/>
+        <result column="buyNum" jdbcType="INTEGER" property="buynum"/>
+        <result column="money" jdbcType="DOUBLE" property="money"/>
+        <result column="currentTime" jdbcType="TIMESTAMP" property="currenttime"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="sellType" jdbcType="VARCHAR" property="selltype"/>
+        <result column="create" jdbcType="TIMESTAMP" property="create"/>
+        <result column="smailBuyType" jdbcType="VARCHAR" property="smailbuytype"/>
+        <result column="smailSellType" jdbcType="VARCHAR" property="smailselltype"/>
+        <result column="rangeType" jdbcType="VARCHAR" property="rangetype"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, `name`, yesterdayPrice, currentPrice, todayPrice, `range`, buy1, buy1price, buy2, 
+    buy2price, buy3, buy3price, buy4, buy4price, buy5, buy5price, sell1, sell1price, 
+    sell2, sell2price, sell3, sell3price, sell4, sell4price, sell5, sell5price, buyNum, 
+    money, currentTime, `type`, sellType, `create`, smailBuyType, smailSellType, rangeType
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SinaShare
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SinaShare
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ming.data.entity.Sinashare"
+            useGeneratedKeys="true">
+    insert into SinaShare (`name`, yesterdayPrice, currentPrice, 
+      todayPrice, `range`, buy1, 
+      buy1price, buy2, buy2price, 
+      buy3, buy3price, buy4, 
+      buy4price, buy5, buy5price, 
+      sell1, sell1price, sell2, 
+      sell2price, sell3, sell3price, 
+      sell4, sell4price, sell5, 
+      sell5price, buyNum, money, 
+      currentTime, `type`, sellType, 
+      `create`, smailBuyType, smailSellType, 
+      rangeType)
+    values (#{name,jdbcType=VARCHAR}, #{yesterdayprice,jdbcType=DOUBLE}, #{currentprice,jdbcType=DOUBLE}, 
+      #{todayprice,jdbcType=DOUBLE}, #{range,jdbcType=VARCHAR}, #{buy1,jdbcType=INTEGER}, 
+      #{buy1price,jdbcType=DOUBLE}, #{buy2,jdbcType=INTEGER}, #{buy2price,jdbcType=DOUBLE}, 
+      #{buy3,jdbcType=INTEGER}, #{buy3price,jdbcType=DOUBLE}, #{buy4,jdbcType=INTEGER}, 
+      #{buy4price,jdbcType=DOUBLE}, #{buy5,jdbcType=INTEGER}, #{buy5price,jdbcType=DOUBLE}, 
+      #{sell1,jdbcType=INTEGER}, #{sell1price,jdbcType=DOUBLE}, #{sell2,jdbcType=INTEGER}, 
+      #{sell2price,jdbcType=DOUBLE}, #{sell3,jdbcType=INTEGER}, #{sell3price,jdbcType=DOUBLE}, 
+      #{sell4,jdbcType=INTEGER}, #{sell4price,jdbcType=DOUBLE}, #{sell5,jdbcType=INTEGER}, 
+      #{sell5price,jdbcType=DOUBLE}, #{buynum,jdbcType=INTEGER}, #{money,jdbcType=DOUBLE}, 
+      #{currenttime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}, #{selltype,jdbcType=VARCHAR}, 
+      #{create,jdbcType=TIMESTAMP}, #{smailbuytype,jdbcType=VARCHAR}, #{smailselltype,jdbcType=VARCHAR}, 
+      #{rangetype,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ming.data.entity.Sinashare"
+            useGeneratedKeys="true">
+        insert into SinaShare
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="yesterdayprice != null">
+                yesterdayPrice,
+            </if>
+            <if test="currentprice != null">
+                currentPrice,
+            </if>
+            <if test="todayprice != null">
+                todayPrice,
+            </if>
+            <if test="range != null">
+                `range`,
+            </if>
+            <if test="buy1 != null">
+                buy1,
+            </if>
+            <if test="buy1price != null">
+                buy1price,
+            </if>
+            <if test="buy2 != null">
+                buy2,
+            </if>
+            <if test="buy2price != null">
+                buy2price,
+            </if>
+            <if test="buy3 != null">
+                buy3,
+            </if>
+            <if test="buy3price != null">
+                buy3price,
+            </if>
+            <if test="buy4 != null">
+                buy4,
+            </if>
+            <if test="buy4price != null">
+                buy4price,
+            </if>
+            <if test="buy5 != null">
+                buy5,
+            </if>
+            <if test="buy5price != null">
+                buy5price,
+            </if>
+            <if test="sell1 != null">
+                sell1,
+            </if>
+            <if test="sell1price != null">
+                sell1price,
+            </if>
+            <if test="sell2 != null">
+                sell2,
+            </if>
+            <if test="sell2price != null">
+                sell2price,
+            </if>
+            <if test="sell3 != null">
+                sell3,
+            </if>
+            <if test="sell3price != null">
+                sell3price,
+            </if>
+            <if test="sell4 != null">
+                sell4,
+            </if>
+            <if test="sell4price != null">
+                sell4price,
+            </if>
+            <if test="sell5 != null">
+                sell5,
+            </if>
+            <if test="sell5price != null">
+                sell5price,
+            </if>
+            <if test="buynum != null">
+                buyNum,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="currenttime != null">
+                currentTime,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="selltype != null">
+                sellType,
+            </if>
+            <if test="create != null">
+                `create`,
+            </if>
+            <if test="smailbuytype != null">
+                smailBuyType,
+            </if>
+            <if test="smailselltype != null">
+                smailSellType,
+            </if>
+            <if test="rangetype != null">
+                rangeType,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="yesterdayprice != null">
+                #{yesterdayprice,jdbcType=DOUBLE},
+            </if>
+            <if test="currentprice != null">
+                #{currentprice,jdbcType=DOUBLE},
+            </if>
+            <if test="todayprice != null">
+                #{todayprice,jdbcType=DOUBLE},
+            </if>
+            <if test="range != null">
+                #{range,jdbcType=VARCHAR},
+            </if>
+            <if test="buy1 != null">
+                #{buy1,jdbcType=INTEGER},
+            </if>
+            <if test="buy1price != null">
+                #{buy1price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy2 != null">
+                #{buy2,jdbcType=INTEGER},
+            </if>
+            <if test="buy2price != null">
+                #{buy2price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy3 != null">
+                #{buy3,jdbcType=INTEGER},
+            </if>
+            <if test="buy3price != null">
+                #{buy3price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy4 != null">
+                #{buy4,jdbcType=INTEGER},
+            </if>
+            <if test="buy4price != null">
+                #{buy4price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy5 != null">
+                #{buy5,jdbcType=INTEGER},
+            </if>
+            <if test="buy5price != null">
+                #{buy5price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell1 != null">
+                #{sell1,jdbcType=INTEGER},
+            </if>
+            <if test="sell1price != null">
+                #{sell1price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell2 != null">
+                #{sell2,jdbcType=INTEGER},
+            </if>
+            <if test="sell2price != null">
+                #{sell2price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell3 != null">
+                #{sell3,jdbcType=INTEGER},
+            </if>
+            <if test="sell3price != null">
+                #{sell3price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell4 != null">
+                #{sell4,jdbcType=INTEGER},
+            </if>
+            <if test="sell4price != null">
+                #{sell4price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell5 != null">
+                #{sell5,jdbcType=INTEGER},
+            </if>
+            <if test="sell5price != null">
+                #{sell5price,jdbcType=DOUBLE},
+            </if>
+            <if test="buynum != null">
+                #{buynum,jdbcType=INTEGER},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=DOUBLE},
+            </if>
+            <if test="currenttime != null">
+                #{currenttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="selltype != null">
+                #{selltype,jdbcType=VARCHAR},
+            </if>
+            <if test="create != null">
+                #{create,jdbcType=TIMESTAMP},
+            </if>
+            <if test="smailbuytype != null">
+                #{smailbuytype,jdbcType=VARCHAR},
+            </if>
+            <if test="smailselltype != null">
+                #{smailselltype,jdbcType=VARCHAR},
+            </if>
+            <if test="rangetype != null">
+                #{rangetype,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ming.data.entity.Sinashare">
+        update SinaShare
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="yesterdayprice != null">
+                yesterdayPrice = #{yesterdayprice,jdbcType=DOUBLE},
+            </if>
+            <if test="currentprice != null">
+                currentPrice = #{currentprice,jdbcType=DOUBLE},
+            </if>
+            <if test="todayprice != null">
+                todayPrice = #{todayprice,jdbcType=DOUBLE},
+            </if>
+            <if test="range != null">
+                `range` = #{range,jdbcType=VARCHAR},
+            </if>
+            <if test="buy1 != null">
+                buy1 = #{buy1,jdbcType=INTEGER},
+            </if>
+            <if test="buy1price != null">
+                buy1price = #{buy1price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy2 != null">
+                buy2 = #{buy2,jdbcType=INTEGER},
+            </if>
+            <if test="buy2price != null">
+                buy2price = #{buy2price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy3 != null">
+                buy3 = #{buy3,jdbcType=INTEGER},
+            </if>
+            <if test="buy3price != null">
+                buy3price = #{buy3price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy4 != null">
+                buy4 = #{buy4,jdbcType=INTEGER},
+            </if>
+            <if test="buy4price != null">
+                buy4price = #{buy4price,jdbcType=DOUBLE},
+            </if>
+            <if test="buy5 != null">
+                buy5 = #{buy5,jdbcType=INTEGER},
+            </if>
+            <if test="buy5price != null">
+                buy5price = #{buy5price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell1 != null">
+                sell1 = #{sell1,jdbcType=INTEGER},
+            </if>
+            <if test="sell1price != null">
+                sell1price = #{sell1price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell2 != null">
+                sell2 = #{sell2,jdbcType=INTEGER},
+            </if>
+            <if test="sell2price != null">
+                sell2price = #{sell2price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell3 != null">
+                sell3 = #{sell3,jdbcType=INTEGER},
+            </if>
+            <if test="sell3price != null">
+                sell3price = #{sell3price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell4 != null">
+                sell4 = #{sell4,jdbcType=INTEGER},
+            </if>
+            <if test="sell4price != null">
+                sell4price = #{sell4price,jdbcType=DOUBLE},
+            </if>
+            <if test="sell5 != null">
+                sell5 = #{sell5,jdbcType=INTEGER},
+            </if>
+            <if test="sell5price != null">
+                sell5price = #{sell5price,jdbcType=DOUBLE},
+            </if>
+            <if test="buynum != null">
+                buyNum = #{buynum,jdbcType=INTEGER},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=DOUBLE},
+            </if>
+            <if test="currenttime != null">
+                currentTime = #{currenttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="selltype != null">
+                sellType = #{selltype,jdbcType=VARCHAR},
+            </if>
+            <if test="create != null">
+                `create` = #{create,jdbcType=TIMESTAMP},
+            </if>
+            <if test="smailbuytype != null">
+                smailBuyType = #{smailbuytype,jdbcType=VARCHAR},
+            </if>
+            <if test="smailselltype != null">
+                smailSellType = #{smailselltype,jdbcType=VARCHAR},
+            </if>
+            <if test="rangetype != null">
+                rangeType = #{rangetype,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ming.data.entity.Sinashare">
+    update SinaShare
+    set `name` = #{name,jdbcType=VARCHAR},
+      yesterdayPrice = #{yesterdayprice,jdbcType=DOUBLE},
+      currentPrice = #{currentprice,jdbcType=DOUBLE},
+      todayPrice = #{todayprice,jdbcType=DOUBLE},
+      `range` = #{range,jdbcType=VARCHAR},
+      buy1 = #{buy1,jdbcType=INTEGER},
+      buy1price = #{buy1price,jdbcType=DOUBLE},
+      buy2 = #{buy2,jdbcType=INTEGER},
+      buy2price = #{buy2price,jdbcType=DOUBLE},
+      buy3 = #{buy3,jdbcType=INTEGER},
+      buy3price = #{buy3price,jdbcType=DOUBLE},
+      buy4 = #{buy4,jdbcType=INTEGER},
+      buy4price = #{buy4price,jdbcType=DOUBLE},
+      buy5 = #{buy5,jdbcType=INTEGER},
+      buy5price = #{buy5price,jdbcType=DOUBLE},
+      sell1 = #{sell1,jdbcType=INTEGER},
+      sell1price = #{sell1price,jdbcType=DOUBLE},
+      sell2 = #{sell2,jdbcType=INTEGER},
+      sell2price = #{sell2price,jdbcType=DOUBLE},
+      sell3 = #{sell3,jdbcType=INTEGER},
+      sell3price = #{sell3price,jdbcType=DOUBLE},
+      sell4 = #{sell4,jdbcType=INTEGER},
+      sell4price = #{sell4price,jdbcType=DOUBLE},
+      sell5 = #{sell5,jdbcType=INTEGER},
+      sell5price = #{sell5price,jdbcType=DOUBLE},
+      buyNum = #{buynum,jdbcType=INTEGER},
+      money = #{money,jdbcType=DOUBLE},
+      currentTime = #{currenttime,jdbcType=TIMESTAMP},
+      `type` = #{type,jdbcType=VARCHAR},
+      sellType = #{selltype,jdbcType=VARCHAR},
+      `create` = #{create,jdbcType=TIMESTAMP},
+      smailBuyType = #{smailbuytype,jdbcType=VARCHAR},
+      smailSellType = #{smailselltype,jdbcType=VARCHAR},
+      rangeType = #{rangetype,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="findBuyBigDetail" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SinaShare
+        where name=#{name} and `create` &gt;= #{beginTime} and `create` &lt;= #{endTime} and type=#{type} order by
+        `create` desc limit 100
+    </select>
+
+    <select id="findSellBigDetail" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from SinaShare
+        where name=#{name} and `create` &gt;= #{beginTime} and `create` &lt;= #{endTime} and sellType=#{sellType} order
+        by `create` desc limit 100
+    </select>
+
+
+    <select id="findBuySumByTime" resultType="Integer">
+        select IFNULL(SUM(buy1+buy2+buy3+buy4+buy5),0)
+		from SinaShare where
+          <if test="name != null and name != ''">
+              name = #{name}
+          </if>
+		and `create` > #{beginTime} and `create` &lt; #{endTime}
+    </select>
+
+    <select id="findSellSumByTime" resultType="Integer">
+        select IFNULL(SUM(sell1+sell2+sell3+sell4+sell5),0)
+		from SinaShare
+		where
+        <if test="name != null and name != ''">
+            name = #{name}
+        </if>
+		and `create` &gt; #{beginTime} and `create` &lt; #{endTime}
+    </select>
+
+
+    <select id="findBuyBig" resultType="Integer">
+	select count(*)
+	from SinaShare
+	where name=#{name} and `create` &gt; #{beginTime} and `create` &lt; #{endTime} and type=#{type}
+</select>
+
+    <select id="findSellBig" resultType="Integer">
+	select count(*)
+	from SinaShare
+	where name=#{name} and `create` &gt;= #{beginTime} and `create` &lt;= #{endTime} and sellType=#{sellType}
+</select>
+
+
+    <select id="findOne" parameterType="string" resultMap="BaseResultMap">
+        select
+        `range`, buy1,
+      buy1price, buy2, buy2price,
+      buy3, buy3price, buy4,
+      buy4price, buy5, buy5price,
+      sell1, sell1price, sell2,
+      sell2price, sell3, sell3price,
+      sell4, sell4price, sell5,sell5price
+        from SinaShare
+        where name=#{name} and `create` &gt;= #{beginTime} and `create` &lt;= #{endTime} order by `create` desc limit 1
+    </select>
+
+
+</mapper>

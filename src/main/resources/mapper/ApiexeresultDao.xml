@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.data.dao.ApiexeresultDao">
+  <resultMap id="BaseResultMap" type="com.ming.data.entity.Apiexeresult">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+    <result column="api_id" jdbcType="INTEGER" property="apiId" />
+    <result column="creat_time" jdbcType="TIME" property="creatTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ming.data.entity.Apiexeresult">
+    insert into apiExeResult (id, `result`, api_id, 
+      creat_time)
+    values (#{id,jdbcType=INTEGER}, #{result,jdbcType=VARCHAR}, #{apiId,jdbcType=INTEGER}, 
+      #{creatTime,jdbcType=TIME})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ming.data.entity.Apiexeresult">
+    insert into apiExeResult
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="result != null">
+        `result`,
+      </if>
+      <if test="apiId != null">
+        api_id,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="apiId != null">
+        #{apiId,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIME},
+      </if>
+    </trim>
+  </insert>
+</mapper>
